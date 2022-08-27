@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-{
+
   /**
 
   usestate() is asyncrhonous
@@ -11,7 +11,7 @@ useState('') ->empty state
 
 useFffect(callback function, dependent_list)
 */
-}
+
 export const Home = () => {
   const [users, setUser] = useState([]);
 
@@ -45,7 +45,8 @@ export const Home = () => {
             <th scope="col">Name</th>
             <th scope="col">Username</th>
             <th scope="col">Email</th>
-
+            <th scope="col">City</th>
+            <th scope="col">Street</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
@@ -56,6 +57,8 @@ export const Home = () => {
               <td>{user.name}</td>
               <td>{user.username}</td>
               <td>{user.email}</td>
+              <td>{user.address.city}</td>
+              <td>{user.address.street}</td>
               <td>
                 <Link
                   to={"/users/" + user.id + "/"}

@@ -9,15 +9,29 @@ export const AddUser = () => {
     name: "",
     username: "",
     email: "",
-    street: "",
-    city: "",
-    zipcode: "",
+    address: {
+      street: "",
+      city: "",
+      zipcode: "",
+    },
+
   });
+
+
   const { name, username, email, street, city, zipcode } = user;
   const onInputChange = (e) => {
     //update the previous state
-    addUser({ ...user, [e.target.name]: e.target.value });
-    console.log({ ...user, [e.target.name]: e.target.value });
+    console.log(e.target.name,e.target.value)
+    
+    if (e.target.name == "name" || e.target.name == "username" || e.target.name == "email" ){
+      addUser({ ...user, [e.target.name]: e.target.value });
+      console.log({ ...user, [e.target.name]: e.target.value });
+    } else {
+      addUser({ ...user,address:{...user.address,[e.target.name]: e.target.value }});
+      console.log({ ...user,address:{...user.address,[e.target.name]: e.target.value } });
+    } 
+   
+    
   };
 
   const onSubmit = async (e) => {
@@ -40,6 +54,7 @@ export const AddUser = () => {
                 type="text"
                 className="form-control"
                 name="name"
+                placeholder="Enter Your Name"
                 value={name}
                 id="name"
                 onChange={(e) => onInputChange(e)}
@@ -53,6 +68,7 @@ export const AddUser = () => {
                 type="text"
                 className="form-control"
                 name="username"
+                placeholder="Set a Username"
                 value={username}
                 id="username"
                 onChange={(e) => onInputChange(e)}
@@ -74,13 +90,13 @@ export const AddUser = () => {
             </div>
 
             <div className="col-12">
-              <label htmlFor="inputAddress" className="form-label">
-                Address
+              <label htmlFor="inputStreet" className="form-label">
+                Street
               </label>
               <input
                 type="text"
                 className="form-control"
-                id="inputAddress"
+                id="inputStreet"
                 name="street"
                 placeholder="1234 Main St"
                 value={street}

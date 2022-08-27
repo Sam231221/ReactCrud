@@ -13,14 +13,23 @@ export const UpdateUser = () => {
     name: "",
     username: "",
     email: "",
-    street: "",
-    city: "",
-    zipcode: "",
+    address: {
+      street: "",
+      city: "",
+      zipcode: "",
+    },
   });
-  const { name, username, email, street, city, zipcode } = user;
+  const { name, username, email, address } = user;
   const onInputChange = (e) => {
-    updateUser({ ...user, [e.target.name]: e.target.value });
-    console.log({ ...user, [e.target.name]: e.target.value });
+
+    if (e.target.name == "name" || e.target.name == "username" || e.target.name == "email" ){
+      updateUser({ ...user, [e.target.name]: e.target.value });
+      console.log({ ...user, [e.target.name]: e.target.value });
+    } else {
+      updateUser({ ...user,address:{...user.address,[e.target.name]: e.target.value }});
+      console.log({ ...user,address:{...user.address,[e.target.name]: e.target.value } });
+    } 
+
   };
 
 
@@ -106,7 +115,7 @@ export const UpdateUser = () => {
                 id="inputAddress"
                 name="suite"
                 placeholder="1234 Main St"
-                value={street}
+                value={address.street}
                 onChange={(e) => onInputChange(e)}
               />
             </div>
@@ -120,7 +129,7 @@ export const UpdateUser = () => {
                 className="form-control"
                 name="city"
                 placeholder="Pokhara"
-                value={city}
+                value={address.city}
                 id="inputCity"
                 onChange={(e) => onInputChange(e)}
               />
@@ -134,7 +143,7 @@ export const UpdateUser = () => {
                 type="text"
                 className="form-control"
                 name="zipcode"
-                value={zipcode}
+                value={address.zipcode}
                 placeholder="2030"
                 id="inputZip"
                 onChange={(e) => onInputChange(e)}

@@ -7,9 +7,11 @@ const ViewUser = () => {
     name: "",
     username: "",
     email: "",
-    street: "",
-    city: "",
-    zipcode: "",
+    address: {
+      street: "",
+      city: "",
+      zipcode: "",
+    },
   });
 
   //from the url get id param using react-router-dom
@@ -35,11 +37,12 @@ const ViewUser = () => {
         <p><strong>Name:</strong> {user.name}</p>
         <p><strong>Username:</strong> {user.username}</p>
         <p><strong>Email:</strong> {user.email}</p>
-        <p><strong>Phone:</strong> {user.phone}</p>
-        <p><strong>Website:</strong> {user.website}</p>
+        <p><strong>City:</strong> {user.address.city}</p>
+        <p><strong>Street:</strong> {user.address.street}</p>
+        <p><strong>Zipcode:</strong> {user.address.zipcode}</p>
       </div>
       <Link className="btn btn-primary" to="/">
-      <i class="bi bi-arrow-left"></i> back to Home
+      <i className="bi bi-arrow-left"></i> back to Home
       </Link>
     </div>
   );
